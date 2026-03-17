@@ -8,8 +8,8 @@ localhost | SUCCESS => {
         "ansible_board_vendor": "Intel Corporation",
         "ansible_fqdn": "Server.home.local",
         "ansible_os_family": "Debian",
-        "ansible_uptime_seconds": 24615,
-        "ansible_user_id": "kxom9k"
+        "ansible_uptime_seconds": 26370,
+        "ansible_user_id": "ssh_Server"
     },
     "changed": false
 }
@@ -23,7 +23,7 @@ ssh_Client1@192.168.118.3 | SUCCESS => {
         "ansible_board_vendor": "Intel Corporation",
         "ansible_fqdn": "Client1.home.local",
         "ansible_os_family": "Debian",
-        "ansible_uptime_seconds": 4146,
+        "ansible_uptime_seconds": 5901,
         "ansible_user_id": "ssh_Client1",
         "discovered_interpreter_python": "/usr/bin/python3"
     },
@@ -39,7 +39,7 @@ ssh_Client2@192.168.118.2 | SUCCESS => {
         "ansible_board_vendor": "Intel Corporation",
         "ansible_fqdn": "Client2.home.local",
         "ansible_os_family": "Debian",
-        "ansible_uptime_seconds": 35853,
+        "ansible_uptime_seconds": 37607,
         "ansible_user_id": "ssh_Client2",
         "discovered_interpreter_python": "/usr/bin/python3"
     },
