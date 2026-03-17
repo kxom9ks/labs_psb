@@ -29,8 +29,8 @@ if [[ $HostName != "" ]]; then
         ssh-keygen -t rsa -b 4096 -f /home/ssh_$HostName/.ssh/id_rsa
         chown ssh_$HostName:ssh_$HostName /home/ssh_$HostName/.ssh/id_rsa
         chown ssh_$HostName:ssh_$HostName /home/ssh_$HostName/.ssh/id_rsa.pub
-	chmod 600 /home/ssh_$HostName/.ssh/id_rsa
-	chmod 600 /home/ssh_$HostName/.ssh/id_rsa.pub
+	    chmod 600 /home/ssh_$HostName/.ssh/id_rsa
+	    chmod 600 /home/ssh_$HostName/.ssh/id_rsa.pub
         echo "Пара ключей сгенерирована"
 
     fi
