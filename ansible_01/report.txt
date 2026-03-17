@@ -1,0 +1,47 @@
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "ansible_all_ipv4_addresses": [
+            "192.168.118.10"
+        ],
+        "ansible_bios_vendor": "VMware, Inc.",
+        "ansible_board_name": "440BX Desktop Reference Platform",
+        "ansible_board_vendor": "Intel Corporation",
+        "ansible_fqdn": "Server.home.local",
+        "ansible_os_family": "Debian",
+        "ansible_uptime_seconds": 17791,
+        "ansible_user_id": "ssh_Server"
+    },
+    "changed": false
+}
+debian_host_1 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_all_ipv4_addresses": [
+            "192.168.118.3"
+        ],
+        "ansible_bios_vendor": "VMware, Inc.",
+        "ansible_board_name": "440BX Desktop Reference Platform",
+        "ansible_board_vendor": "Intel Corporation",
+        "ansible_fqdn": "Client1",
+        "ansible_os_family": "Debian",
+        "ansible_uptime_seconds": 28257,
+        "ansible_user_id": "ssh_Client1",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
+debian_host_2 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_all_ipv4_addresses": [
+            "192.168.118.2"
+        ],
+        "ansible_bios_vendor": "VMware, Inc.",
+        "ansible_board_name": "440BX Desktop Reference Platform",
+        "ansible_board_vendor": "Intel Corporation",
+        "ansible_fqdn": "Client2",
+        "ansible_os_family": "Debian",
+        "ansible_uptime_seconds": 29029,
+        "ansible_user_id": "ssh_Client2",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
