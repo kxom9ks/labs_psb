@@ -26,8 +26,6 @@ done
 
 if (( c <= 0 )); then
     echo "Нужно добавить параметры TMOUT"
-    c=0
 else
     echo "Параметры добавлены"
-    c=0
 fi
