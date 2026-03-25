@@ -14,7 +14,7 @@
         - "Версия:  {{ ansible_version.full }} "
         - "Конфиг:  {{ ansible_config_file }} "
         - "Дата/время:  {{ ansible_date_time.date }}/{{ ansible_date_time.time }} "
-        - "Пользователь:  {{ ansible_user_id }} "
+        - "Пользователь: {{ ansible_user_id if ansible_hostname == 'Server' else ansible_user }} "
         - "Версия ОС:  {{ ansible_distribution }} {{ ansible_distribution_version }} {{ ansible_distribution_release }} "
         - "Семейство ОС:  {{ ansible_os_family }} "
         - "RAM:  {{ ansible_memtotal_mb }} "
