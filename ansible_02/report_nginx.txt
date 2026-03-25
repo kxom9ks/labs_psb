@@ -1,0 +1,37 @@
+
+PLAY [Nginx operations] ********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [debian_host_1]
+
+TASK [Update packets] **********************************************************
+ok: [debian_host_1]
+
+TASK [Nginx download] **********************************************************
+ok: [debian_host_1]
+
+TASK [Curl download] ***********************************************************
+changed: [debian_host_1]
+
+TASK [Nginx start] *************************************************************
+ok: [debian_host_1]
+
+TASK [Update Nginx configuration] **********************************************
+ok: [debian_host_1]
+
+TASK [Forcegrub restart] *******************************************************
+
+TASK [Check config] ************************************************************
+changed: [debian_host_1]
+
+TASK [Check headers] ***********************************************************
+changed: [debian_host_1]
+
+TASK [Output cfg from nginx] ***************************************************
+ok: [debian_host_1] => {
+    "cmd_out, curl_out": "({'changed': True, 'stdout': '', 'stderr': 'nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\\nnginx: configuration file /etc/nginx/nginx.conf test is successful', 'rc': 0, 'cmd': 'nginx -t', 'start': '2026-03-26 00:29:15.017770', 'end': '2026-03-26 00:29:15.037472', 'delta': '0:00:00.019702', 'msg': '', 'stdout_lines': [], 'stderr_lines': ['nginx: the configuration file /etc/nginx/nginx.conf syntax is ok', 'nginx: configuration file /etc/nginx/nginx.conf test is successful'], 'failed': False}, {'changed': True, 'stdout': 'HTTP/1.1 200 OK\\r\\nServer: nginx/1.22.1\\r\\nDate: Wed, 25 Mar 2026 17:29:15 GMT\\r\\nContent-Type: text/html\\r\\nContent-Length: 615\\r\\nLast-Modified: Wed, 25 Mar 2026 17:04:04 GMT\\r\\nConnection: keep-alive\\r\\nETag: \"69c41584-267\"\\r\\nX-Frame-Options: SAMEORIGINS\\r\\nX-Custom-Header: TestAnsiblePlaybook\\r\\nAccept-Ranges: bytes', 'stderr': '  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\\n                                 Dload  Upload   Total   Spent    Left  Speed\\n\\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\\r  0   615    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0', 'rc': 0, 'cmd': 'curl --head localhost', 'start': '2026-03-26 00:29:15.825530', 'end': '2026-03-26 00:29:15.870631', 'delta': '0:00:00.045101', 'msg': '', 'stdout_lines': ['HTTP/1.1 200 OK', 'Server: nginx/1.22.1', 'Date: Wed, 25 Mar 2026 17:29:15 GMT', 'Content-Type: text/html', 'Content-Length: 615', 'Last-Modified: Wed, 25 Mar 2026 17:04:04 GMT', 'Connection: keep-alive', 'ETag: \"69c41584-267\"', 'X-Frame-Options: SAMEORIGINS', 'X-Custom-Header: TestAnsiblePlaybook', 'Accept-Ranges: bytes'], 'stderr_lines': ['  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current', '                                 Dload  Upload   Total   Spent    Left  Speed', '', '  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0', '  0   615    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0'], 'failed': False})"
+}
+
+PLAY RECAP *********************************************************************
+debian_host_1              : ok=9    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

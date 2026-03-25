@@ -1,0 +1,57 @@
+---
+- name: Nginx operations
+  hosts: debian_host_1
+  become: yes
+
+  vars:
+    nginx_user: www-data
+    worker_connections: 512
+
+  tasks:
+    - name: Update packets
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Nginx download
+      ansible.builtin.apt:
+        name: nginx
+        state: latest
+
+    - name: Curl download
+      ansible.builtin.apt:
+        name: curl
+        state: latest
+
+    - name: Nginx start
+      ansible.builtin.systemd_service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Update Nginx configuration
+      ansible.builtin.template:
+        src: nginx.conf
+        dest: /etc/nginx/nginx.conf
+      notify: Nginx Restart
+
+    - name: Forcegrub restart
+      meta: flush_handlers
+
+    - name: Check config
+      shell: nginx -t
+      register: cmd_out
+
+    - name: Check headers
+      shell: curl --head localhost
+      register: curl_out
+
+    - name: Output cfg from nginx
+      ansible.builtin.debug:
+        var: cmd_out, curl_out
+
+  handlers:
+    - name: Nginx Restart
+      service:
+        name: nginx
+        state: restarted
+
