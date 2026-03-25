@@ -1,0 +1,14 @@
+---
+- name: check timeout
+  hosts: all,localhost
+  become: yes
+
+  tasks:
+    - name: check all dir
+      ansible.builtin.script: ./find.sh /etc/bash.bashrc /etc/profile /etc/profile.d
+      register: sh
+
+    - name: result
+      ansible.builtin.debug:
+        var: sh.stdout_lines
+

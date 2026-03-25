@@ -1,0 +1,39 @@
+
+PLAY [check timeout] ***********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+ok: [debian_host_2]
+ok: [debian_host_1]
+
+TASK [check all dir] ***********************************************************
+changed: [localhost]
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [result] ******************************************************************
+ok: [debian_host_1] => {
+    "sh.stdout_lines": [
+        "",
+        "",
+        "Параметры добавлены"
+    ]
+}
+ok: [debian_host_2] => {
+    "sh.stdout_lines": [
+        "",
+        "",
+        "Нужно добавить параметры TMOUT"
+    ]
+}
+ok: [localhost] => {
+    "sh.stdout_lines": [
+        "Параметры добавлены"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+debian_host_1              : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+debian_host_2              : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
