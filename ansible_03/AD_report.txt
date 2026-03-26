@@ -7,9 +7,9 @@ ok: [debian_host_2]
 ok: [debian_host_1]
 
 TASK [script for search] *******************************************************
-changed: [astra_host_1]
 changed: [debian_host_1]
 changed: [debian_host_2]
+changed: [astra_host_1]
 
 TASK [output] ******************************************************************
 ok: [debian_host_1] => {
@@ -32,10 +32,10 @@ ok: [debian_host_2] => {
 }
 ok: [astra_host_1] => {
     "sh.stdout_lines": [
-        "Kerberos encrypton algorithms. Status - Error. Solve the problem with config krb5.conf",
+        "Kerberos encrypton algorithms. Status - Ok.",
         "Cache credentials not save. Status - Ok.",
         "fallback_homedir in /etc/sssd/sssd.conf not exist",
-        "fallback_homedir in not exist, cause /etc/sssd/conf.d is empty"
+        "fallback_homedir is not exist"
     ]
 }
 
