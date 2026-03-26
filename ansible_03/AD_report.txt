@@ -1,0 +1,46 @@
+
+PLAY [AD search options] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [astra_host_1]
+ok: [debian_host_2]
+ok: [debian_host_1]
+
+TASK [script for search] *******************************************************
+changed: [astra_host_1]
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [output] ******************************************************************
+ok: [debian_host_1] => {
+    "sh.stdout_lines": [
+        "",
+        "",
+        "krb5.config not exist",
+        "sssd.conf not exist",
+        "conf.d not exist"
+    ]
+}
+ok: [debian_host_2] => {
+    "sh.stdout_lines": [
+        "",
+        "",
+        "krb5.config not exist",
+        "sssd.conf not exist",
+        "conf.d not exist"
+    ]
+}
+ok: [astra_host_1] => {
+    "sh.stdout_lines": [
+        "Kerberos encrypton algorithms. Status - Error. Solve the problem with config krb5.conf",
+        "Cache credentials not save. Status - Ok.",
+        "fallback_homedir in /etc/sssd/sssd.conf not exist",
+        "fallback_homedir in not exist, cause /etc/sssd/conf.d is empty"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+astra_host_1               : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+debian_host_1              : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+debian_host_2              : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

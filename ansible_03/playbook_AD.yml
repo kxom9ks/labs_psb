@@ -1,0 +1,14 @@
+---
+- name: AD search options
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: script for search
+      ansible.builtin.script: AD_find.sh /etc/krb5.conf /etc/sssd/sssd.conf /etc/sssd/conf.d
+      register: sh
+
+    - name: output
+      ansible.builtin.debug:
+        var: sh.stdout_lines
+
