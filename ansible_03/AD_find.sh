@@ -53,7 +53,7 @@ if [[ -z "$(ls -A $conf_d_path)" ]]; then
     if [[ $(grep -r "fallback_homedir" "$conf_d_path" | awk -F'=' '{print $2}' | grep -v "@%d") != "" ]]; then
         echo $(grep -r "fallback_homedir" "$conf_d_path" | awk -F'=' '{print $1 $2}' | grep -v "@%d") "Status - Error."
     elif [[ $(grep -r "fallback_homedir" "$conf_d_path") == "" ]]; then
-        echo "fallback_homedir is not exist"
+        echo "fallback_homedir is not exist in '$conf_d_path'"
     else
         echo "fallback_homedir sssd.conf Status - Ok."
     fi
