@@ -1,0 +1,76 @@
+
+PLAY [antirootkit] *************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+ok: [debian_host_1]
+ok: [debian_host_2]
+
+TASK [Update Packets] **********************************************************
+ok: [debian_host_1]
+ok: [debian_host_2]
+ok: [localhost]
+
+TASK [Download chkrootkit] *****************************************************
+ok: [localhost]
+changed: [debian_host_2]
+changed: [debian_host_1]
+
+TASK [Chkrootkit start] ********************************************************
+changed: [localhost]
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [Chkrootkit out] **********************************************************
+ok: [debian_host_1] => {
+    "out_crk.stdout_lines": [
+        "WARNING: The following suspicious files and directories were found:",
+        "/usr/lib/libreoffice/share/.registry",
+        "",
+        "WARNING: Output from ifpromisc:",
+        "ens33: PACKET SNIFFER(/usr/sbin/NetworkManager[692])",
+        "",
+        "WARNING: output from chklastlog:",
+        "user kxom9k deleted or never logged from lastlog!"
+    ]
+}
+ok: [debian_host_2] => {
+    "out_crk.stdout_lines": [
+        "WARNING: The following suspicious files and directories were found:",
+        "/usr/lib/libreoffice/share/.registry",
+        "",
+        "WARNING: Output from ifpromisc:",
+        "ens33: PACKET SNIFFER(/usr/sbin/NetworkManager[738])",
+        "",
+        "WARNING: output from chklastlog:",
+        "user kxom9k deleted or never logged from lastlog!"
+    ]
+}
+ok: [localhost] => {
+    "out_crk.stdout_lines": [
+        "WARNING: The following suspicious files and directories were found:",
+        "/usr/lib/libreoffice/share/.registry",
+        "/usr/lib/python3/dist-packages/ansible/galaxy/data/apb/templates/.git_keep",
+        "/usr/lib/python3/dist-packages/ansible/galaxy/data/apb/files/.git_keep",
+        "/usr/lib/python3/dist-packages/ansible/galaxy/data/container/templates/.git_keep",
+        "/usr/lib/python3/dist-packages/ansible/galaxy/data/container/files/.git_keep",
+        "/usr/lib/python3/dist-packages/ansible/galaxy/data/default/collection/docs/.git_keep",
+        "/usr/lib/python3/dist-packages/ansible/galaxy/data/default/collection/roles/.git_keep",
+        "/usr/lib/python3/dist-packages/ansible/galaxy/data/default/role/templates/.git_keep",
+        "/usr/lib/python3/dist-packages/ansible/galaxy/data/default/role/files/.git_keep",
+        "/usr/lib/python3/dist-packages/ansible/galaxy/data/network/templates/.git_keep",
+        "/usr/lib/python3/dist-packages/ansible/galaxy/data/network/files/.git_keep",
+        "",
+        "WARNING: Possible Adore Worm installed:",
+        "/usr/lib/python3/dist-packages/ansible_collections/cyberark/conjur/dev/start.sh",
+        "",
+        "WARNING: Output from ifpromisc:",
+        "ens33: PACKET SNIFFER(/usr/sbin/NetworkManager[722])"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+debian_host_1              : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+debian_host_2              : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

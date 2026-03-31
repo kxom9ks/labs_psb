@@ -1,0 +1,13 @@
+---
+- name: Change UMASK DIR_MODE and (group owner remove) -wx (group other remove) rwx /var/log
+  hosts: all,localhost
+  become: yes
+
+  tasks:
+    - name: Changes
+      ansible.builtin.script: change.sh
+      register: changes_out
+
+    - name: Changes_out
+      ansible.builtin.debug:
+        var: changes_out.stdout_lines

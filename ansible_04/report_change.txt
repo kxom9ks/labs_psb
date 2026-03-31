@@ -1,0 +1,53 @@
+
+PLAY [Change UMASK DIR_MODE and (group owner remove) -wx (group other remove) rwx /var/log] ***
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+ok: [debian_host_1]
+ok: [debian_host_2]
+
+TASK [Changes] *****************************************************************
+changed: [localhost]
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [Changes_out] *************************************************************
+ok: [debian_host_1] => {
+    "changes_out.stdout_lines": [
+        "",
+        "",
+        "login.defs UMASK 027",
+        "Create orgnm.sh",
+        "Start orgnm.sh",
+        "Change profile.d umask=0027 | test file = 640",
+        "DIR_MODE=0700",
+        "Find g-wx o-rwx in /var/log executed"
+    ]
+}
+ok: [debian_host_2] => {
+    "changes_out.stdout_lines": [
+        "",
+        "login.defs UMASK 027",
+        "Create orgnm.sh",
+        "Start orgnm.sh",
+        "Change profile.d umask=0027 | test file = 640",
+        "DIR_MODE=0700",
+        "Find g-wx o-rwx in /var/log executed"
+    ]
+}
+ok: [localhost] => {
+    "changes_out.stdout_lines": [
+        "login.defs UMASK 027",
+        "Create orgnm.sh",
+        "Start orgnm.sh",
+        "Change profile.d umask=0027 | test file = 640",
+        "DIR_MODE=0700",
+        "Find g-wx o-rwx in /var/log executed"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+debian_host_1              : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+debian_host_2              : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

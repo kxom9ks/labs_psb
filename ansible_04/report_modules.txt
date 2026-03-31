@@ -1,0 +1,38 @@
+
+PLAY [Find useless modules] ****************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+ok: [debian_host_1]
+ok: [debian_host_2]
+
+TASK [Find modules] ************************************************************
+changed: [localhost]
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [modules_out] *************************************************************
+ok: [debian_host_1] => {
+    "modules_out.stdout_lines": [
+        "",
+        "Everything ok."
+    ]
+}
+ok: [debian_host_2] => {
+    "modules_out.stdout_lines": [
+        "",
+        "",
+        "Everything ok."
+    ]
+}
+ok: [localhost] => {
+    "modules_out.stdout_lines": [
+        "squashfs"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+debian_host_1              : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+debian_host_2              : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

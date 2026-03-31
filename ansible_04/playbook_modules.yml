@@ -1,0 +1,14 @@
+---
+- name: Find useless modules
+  hosts: all,localhost
+  become: yes
+
+  tasks:
+    - name: Find modules
+      ansible.builtin.script: find_modules.sh
+      register: modules_out
+
+    - name: modules_out
+      ansible.builtin.debug:
+        var: modules_out.stdout_lines
+

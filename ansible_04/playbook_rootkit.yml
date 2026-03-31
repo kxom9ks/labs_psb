@@ -1,0 +1,22 @@
+---
+- name: antirootkit
+  hosts: all,localhost
+  become: yes
+
+  tasks:
+    - name: Update Packets
+      ansible.builtin.package:
+        update_cache: yes
+
+    - name: Download chkrootkit
+      ansible.builtin.package:
+        name: chkrootkit
+        state: latest
+
+    - name: Chkrootkit start
+      shell: chkrootkit -q
+      register: out_crk
+
+    - name: Chkrootkit out
+      ansible.builtin.debug:
+        var: out_crk.stdout_lines
