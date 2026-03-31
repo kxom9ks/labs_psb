@@ -3,8 +3,8 @@ PLAY [Change UMASK DIR_MODE and (group owner remove) -wx (group other remove) rw
 
 TASK [Gathering Facts] *********************************************************
 ok: [localhost]
-ok: [debian_host_1]
 ok: [debian_host_2]
+ok: [debian_host_1]
 
 TASK [Changes] *****************************************************************
 changed: [localhost]
@@ -26,6 +26,7 @@ ok: [debian_host_1] => {
 }
 ok: [debian_host_2] => {
     "changes_out.stdout_lines": [
+        "",
         "",
         "login.defs UMASK 027",
         "Create orgnm.sh",

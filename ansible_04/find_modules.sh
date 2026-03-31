@@ -1,7 +1,7 @@
 #!/bin/bash
 
 modules="/proc/filesystems"
-cmd=$(grep -Ew "cramfs|freevxfs|jffs2|hfs|hfsplus|squashfs" "$modules" | xargs)
+cmd=$(lsmod | grep -Ew "cramfs|freevxfs|jffs2|hfs|hfsplus|squashfs"|xargs)
 
 if [[ "$cmd" == "" ]]; then
 

@@ -3,8 +3,8 @@ PLAY [Find useless modules] ****************************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [localhost]
-ok: [debian_host_1]
 ok: [debian_host_2]
+ok: [debian_host_1]
 
 TASK [Find modules] ************************************************************
 changed: [localhost]
@@ -18,16 +18,16 @@ ok: [debian_host_1] => {
         "Everything ok."
     ]
 }
+ok: [localhost] => {
+    "modules_out.stdout_lines": [
+        "squashfs 73728 0"
+    ]
+}
 ok: [debian_host_2] => {
     "modules_out.stdout_lines": [
         "",
         "",
         "Everything ok."
-    ]
-}
-ok: [localhost] => {
-    "modules_out.stdout_lines": [
-        "squashfs"
     ]
 }
 
