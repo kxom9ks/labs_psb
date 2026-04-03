@@ -1,0 +1,38 @@
+---
+- name: Check services
+  hosts: all, localhost
+  become: yes
+  gather_facts: no
+  vars:
+    services:
+          - autofs.service
+          - avahi-daemon.service
+          - isc-dhcp-server.service
+          - bind9.service
+          - vsftpd.service
+          - slapd.service
+          - nfs-kernel-server.service
+          - nis.service
+          - cups.service
+          - smbd.service
+          - snmpd.service
+          - tftpd-hpa.service
+          - apache2.service
+          - xinetd.service
+          - exim4.service
+          - postfix.service
+
+  tasks:
+    - name: Service facts
+      ansible.builtin.service_facts:
+
+    - name: Print service facts
+      ansible.builtin.debug:
+        var: item
+      loop: "{{ ansible_facts.services | dict2items | selectattr('value.state', 'eq', 'running') | selectattr('key', 'in', services) }}"
+      register: services
+      no_log: true
+
+    - name: Final check
+      ansible.builtin.debug:
+        msg: "{{ 'This service/s not off: ' ~ (services.results | map(attribute='item.key') | join(', ')) if (services.results | length > 0) else 'All services off' }}"

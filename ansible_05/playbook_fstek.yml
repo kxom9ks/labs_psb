@@ -1,0 +1,38 @@
+---
+- name: Recs fstek
+  hosts: all, localhost
+  become: yes
+
+  tasks:
+    - name: Namespace for user
+      ansible.builtin.shell: /sbin/sysctl -n user.max_user_namespaces
+      register: namespaces_out
+
+    - name: BPF
+      ansible.builtin.shell: /sbin/sysctl -n kernel.unprivileged_bpf_disabled
+      register: BPF_out
+
+    - name: kernel events
+      ansible.builtin.shell: /sbin/sysctl -n kernel.perf_event_paranoid
+      register: kernel_events_out
+
+    - name: vsyscall interface
+      ansible.builtin.shell: grep -x 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash vsyscall=none"' /etc/default/grub
+      register: vsyscall_out
+      failed_when: false
+
+    - name: BPF_out
+      ansible.builtin.debug:
+        msg: "{{ 'OK. kernel.unprivileged_bpf_disabled = 1' if BPF_out.stdout == '1' else 'NOT NORMAL NEED 1 kernel.unprivileged_bpf_disabled = ' ~ BPF_out.stdout }}"
+
+    - name: Namespaces_o
+      ansible.builtin.debug:
+        msg: "{{ 'OK. user.max_user_namespaces = 0' if namespaces_out.stdout == '0' else 'NOT NORMAL NEED 0 user.max_user_namespaces = ' ~ namespaces_out.stdout }}"
+
+    - name: Kernel_events
+      ansible.builtin.debug:
+        msg: "{{ 'OK. kernel.perf_event_paranoid = 3' if kernel_events_out.stdout == '3' else 'NOT NORMAL NEED 3 kernel.perf_event_paranoid = ' ~ kernel_events_out.stdout }}"
+
+    - name: Kernel_events
+      ansible.builtin.debug:
+        msg: "{{ 'NOT NORMAL NEED GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash debugfs=no-mount\"' if vsyscall_out.stdout == '' else 'OK.' }}"

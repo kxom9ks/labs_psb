@@ -1,0 +1,77 @@
+
+PLAY [Recs fstek] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+ok: [debian_host_1]
+ok: [debian_host_2]
+
+TASK [Namespace for user] ******************************************************
+changed: [localhost]
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [BPF] *********************************************************************
+changed: [localhost]
+changed: [debian_host_2]
+changed: [debian_host_1]
+
+TASK [kernel events] ***********************************************************
+changed: [localhost]
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [vsyscall interface] ******************************************************
+changed: [localhost]
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [BPF_out] *****************************************************************
+ok: [debian_host_1] => {
+    "msg": "NOT NORMAL NEED 1 kernel.unprivileged_bpf_disabled = 2"
+}
+ok: [debian_host_2] => {
+    "msg": "NOT NORMAL NEED 1 kernel.unprivileged_bpf_disabled = 2"
+}
+ok: [localhost] => {
+    "msg": "NOT NORMAL NEED 1 kernel.unprivileged_bpf_disabled = 2"
+}
+
+TASK [Namespaces_o] ************************************************************
+ok: [debian_host_1] => {
+    "msg": "NOT NORMAL NEED 0 user.max_user_namespaces = 7502"
+}
+ok: [debian_host_2] => {
+    "msg": "NOT NORMAL NEED 0 user.max_user_namespaces = 7502"
+}
+ok: [localhost] => {
+    "msg": "NOT NORMAL NEED 0 user.max_user_namespaces = 15295"
+}
+
+TASK [Kernel_events] ***********************************************************
+ok: [debian_host_1] => {
+    "msg": "OK. kernel.perf_event_paranoid = 3"
+}
+ok: [debian_host_2] => {
+    "msg": "OK. kernel.perf_event_paranoid = 3"
+}
+ok: [localhost] => {
+    "msg": "OK. kernel.perf_event_paranoid = 3"
+}
+
+TASK [Kernel_events] ***********************************************************
+ok: [debian_host_1] => {
+    "msg": "NOT NORMAL NEED GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash debugfs=no-mount\""
+}
+ok: [debian_host_2] => {
+    "msg": "NOT NORMAL NEED GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash debugfs=no-mount\""
+}
+ok: [localhost] => {
+    "msg": "OK."
+}
+
+PLAY RECAP *********************************************************************
+debian_host_1              : ok=9    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+debian_host_2              : ok=9    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=9    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
