@@ -1,0 +1,53 @@
+
+######Client1
+
+###SUDO_EXECUTE
+node=Client1 type=PATH msg=audit(1775499914.827:129): item=0 name="/usr/bin/sudo" inode=2517661 dev=08:02 mode=0104755 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client1 type=SYSCALL msg=audit(1775499914.827:129): arch=c000003e syscall=59 success=yes exit=0 a0=55d9d729fd60 a1=55d9d729fc68 a2=55d9d729fcc0 a3=8 items=3 ppid=2712 pid=2713 auid=1001 uid=1001 gid=1001 euid=0 suid=0 fsuid=0 egid=1001 sgid=1001 fsgid=1001 tty=pts0 ses=2 comm="sudo" exe="/usr/bin/sudo" subj=unconfined key="SUDO_EXECUTE" ARCH=x86_64 SYSCALL=execve AUID="ssh_Client1" UID="ssh_Client1" GID="ssh_Client1" EUID="root" SUID="root" FSUID="root" EGID="ssh_Client1" SGID="ssh_Client1" FSGID="ssh_Client1"
+node=Client1 type=EXECVE msg=audit(1775499914.827:129): argc=10 a0="sudo" a1="-H" a2="-S" a3="-p" a4=5B7375646F2076696120616E7369626C652C206B65793D726B6B63787773726F7672737065696162676E6E6A6E686A7A796870696F756C5D2070617373776F72643A a5="-u" a6="root" a7="/bin/sh" a8="-c" a9=6563686F204245434F4D452D535543434553532D726B6B63787773726F7672737065696162676E6E6A6E686A7A796870696F756C203B202F7573722F62696E2F707974686F6E33202F686F6D652F7373685F436C69656E74312F2E616E7369626C652F746D702F616E7369626C652D746D702D313737353439393931342E363630323934332D31323337332D3234363637393237303132323339342F416E736962616C6C5A5F636F6D6D616E642E7079
+node=Client1 type=CWD msg=audit(1775499914.827:129): cwd="/home/ssh_Client1"
+node=Client1 type=PATH msg=audit(1775499914.827:129): item=1 name="/usr/bin/sudo" inode=2517661 dev=08:02 mode=0104755 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client1 type=PATH msg=audit(1775499914.827:129): item=2 name="/lib64/ld-linux-x86-64.so.2" inode=2490383 dev=08:02 mode=0100755 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client1 type=PROCTITLE msg=audit(1775499914.827:129): proctitle=7375646F002D48002D53002D70005B7375646F2076696120616E7369626C652C206B65793D726B6B63787773726F7672737065696162676E6E6A6E686A7A796870696F756C5D2070617373776F72643A002D7500726F6F74002F62696E2F7368002D63006563686F204245434F4D452D535543434553532D726B6B6378777372
+node=Client1 type=EOE msg=audit(1775499914.827:129): 
+
+###SSH_CONFIG
+node=Client1 type=SYSCALL msg=audit(1775499914.967:136): arch=c000003e syscall=257 success=yes exit=3 a0=ffffff9c a1=55bf0ce6e838 a2=441 a3=1b6 items=2 ppid=2716 pid=2717 auid=1001 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts1 ses=2 comm="sh" exe="/usr/bin/dash" subj=unconfined key="SSH_CONFIG" ARCH=x86_64 SYSCALL=openat AUID="ssh_Client1" UID="root" GID="root" EUID="root" SUID="root" FSUID="root" EGID="root" SGID="root" FSGID="root"
+node=Client1 type=CWD msg=audit(1775499914.967:136): cwd="/home/ssh_Client1"
+node=Client1 type=PATH msg=audit(1775499914.967:136): item=0 name="/etc/ssh/" inode=1311515 dev=08:02 mode=040755 ouid=0 ogid=0 rdev=00:00 nametype=PARENT cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client1 type=PATH msg=audit(1775499914.967:136): item=1 name="/etc/ssh/sshd_config" inode=1312381 dev=08:02 mode=0100644 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client1 type=PROCTITLE msg=audit(1775499914.967:136): proctitle=2F62696E2F7368002D63006375726C20223139322E3136382E302E323A31323339222F3F68656C6C6F3D746869735F746573743B206563686F202223205465737473696C656E636522203E3E202F6574632F7373682F737368645F636F6E6669673B20746F75636820616E797761795F66696C652E7478743B2063686D6F6420
+node=Client1 type=EOE msg=audit(1775499914.967:136): 
+
+###CHMOD_COMMAND
+node=Client1 type=SYSCALL msg=audit(1775499914.983:137): arch=c000003e syscall=268 success=yes exit=0 a0=ffffff9c a1=561a89ee34d0 a2=1a4 a3=7f1f4d0e4fb8 items=1 ppid=2717 pid=2721 auid=1001 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts1 ses=2 comm="chmod" exe="/usr/bin/chmod" subj=unconfined key="CHMOD_COMMAND" ARCH=x86_64 SYSCALL=fchmodat AUID="ssh_Client1" UID="root" GID="root" EUID="root" SUID="root" FSUID="root" EGID="root" SGID="root" FSGID="root"
+node=Client1 type=CWD msg=audit(1775499914.983:137): cwd="/home/ssh_Client1"
+node=Client1 type=PATH msg=audit(1775499914.983:137): item=0 name="anyway_file.txt" inode=2229541 dev=08:02 mode=0100644 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client1 type=PROCTITLE msg=audit(1775499914.983:137): proctitle=63686D6F64002B7200616E797761795F66696C652E747874
+node=Client1 type=EOE msg=audit(1775499914.983:137): 
+
+######Client2
+
+###SUDO_EXECUTE
+node=Client2 type=SYSCALL msg=audit(1775499914.822:129): arch=c000003e syscall=59 success=yes exit=0 a0=556cc654ed60 a1=556cc654ec68 a2=556cc654ecc0 a3=8 items=3 ppid=2703 pid=2704 auid=1001 uid=1001 gid=1001 euid=0 suid=0 fsuid=0 egid=1001 sgid=1001 fsgid=1001 tty=pts0 ses=2 comm="sudo" exe="/usr/bin/sudo" subj=unconfined key="SUDO_EXECUTE" ARCH=x86_64 SYSCALL=execve AUID="ssh_Client2" UID="ssh_Client2" GID="ssh_Client2" EUID="root" SUID="root" FSUID="root" EGID="ssh_Client2" SGID="ssh_Client2" FSGID="ssh_Client2"
+node=Client2 type=EXECVE msg=audit(1775499914.822:129): argc=10 a0="sudo" a1="-H" a2="-S" a3="-p" a4=5B7375646F2076696120616E7369626C652C206B65793D6D6C6E62636C717671667A79746E676D747667726C6E6F6E797672647A616B685D2070617373776F72643A a5="-u" a6="root" a7="/bin/sh" a8="-c" a9=6563686F204245434F4D452D535543434553532D6D6C6E62636C717671667A79746E676D747667726C6E6F6E797672647A616B68203B202F7573722F62696E2F707974686F6E33202F686F6D652F7373685F436C69656E74322F2E616E7369626C652F746D702F616E7369626C652D746D702D313737353439393931342E363636333032342D31323337342D3132343337323731353434373835342F416E736962616C6C5A5F636F6D6D616E642E7079
+node=Client2 type=CWD msg=audit(1775499914.822:129): cwd="/home/ssh_Client2"
+node=Client2 type=PATH msg=audit(1775499914.822:129): item=0 name="/usr/bin/sudo" inode=2255517 dev=08:02 mode=0104755 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client2 type=PATH msg=audit(1775499914.822:129): item=1 name="/usr/bin/sudo" inode=2255517 dev=08:02 mode=0104755 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client2 type=PATH msg=audit(1775499914.822:129): item=2 name="/lib64/ld-linux-x86-64.so.2" inode=2228239 dev=08:02 mode=0100755 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client2 type=PROCTITLE msg=audit(1775499914.822:129): proctitle=7375646F002D48002D53002D70005B7375646F2076696120616E7369626C652C206B65793D6D6C6E62636C717671667A79746E676D747667726C6E6F6E797672647A616B685D2070617373776F72643A002D7500726F6F74002F62696E2F7368002D63006563686F204245434F4D452D535543434553532D6D6C6E62636C7176
+node=Client2 type=EOE msg=audit(1775499914.822:129): 
+
+###SSH_CONFIG
+node=Client2 type=SYSCALL msg=audit(1775499914.950:136): arch=c000003e syscall=257 success=yes exit=3 a0=ffffff9c a1=55bf59294838 a2=441 a3=1b6 items=2 ppid=2707 pid=2708 auid=1001 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts1 ses=2 comm="sh" exe="/usr/bin/dash" subj=unconfined key="SSH_CONFIG" ARCH=x86_64 SYSCALL=openat AUID="ssh_Client2" UID="root" GID="root" EUID="root" SUID="root" FSUID="root" EGID="root" SGID="root" FSGID="root"
+node=Client2 type=PATH msg=audit(1775499914.950:136): item=0 name="/etc/ssh/" inode=265404 dev=08:02 mode=040755 ouid=0 ogid=0 rdev=00:00 nametype=PARENT cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client2 type=PATH msg=audit(1775499914.950:136): item=1 name="/etc/ssh/sshd_config" inode=269160 dev=08:02 mode=0100644 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client2 type=PROCTITLE msg=audit(1775499914.950:136): proctitle=2F62696E2F7368002D63006375726C20223139322E3136382E302E323A31323339222F3F68656C6C6F3D746869735F746573743B206563686F202223205465737473696C656E636522203E3E202F6574632F7373682F737368645F636F6E6669673B20746F75636820616E797761795F66696C652E7478743B2063686D6F6420
+node=Client2 type=EOE msg=audit(1775499914.950:136): 
+
+###CHMOD_COMMAND
+node=Client2 type=SYSCALL msg=audit(1775499914.958:137): arch=c000003e syscall=268 success=yes exit=0 a0=ffffff9c a1=5560769e74d0 a2=1a4 a3=7f0eb0675fb8 items=1 ppid=2708 pid=2710 auid=1001 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts1 ses=2 comm="chmod" exe="/usr/bin/chmod" subj=unconfined key="CHMOD_COMMAND" ARCH=x86_64 SYSCALL=fchmodat AUID="ssh_Client2" UID="root" GID="root" EUID="root" SUID="root" FSUID="root" EGID="root" SGID="root" FSGID="root"
+node=Client2 type=CWD msg=audit(1775499914.958:137): cwd="/home/ssh_Client2"
+node=Client2 type=PATH msg=audit(1775499914.958:137): item=0 name="anyway_file.txt" inode=787288 dev=08:02 mode=0100644 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0 OUID="root" OGID="root"
+node=Client2 type=PROCTITLE msg=audit(1775499914.958:137): proctitle=63686D6F64002B7200616E797761795F66696C652E747874 
+node=Client2 type=EOE msg=audit(1775499914.958:137): 

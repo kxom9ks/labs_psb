@@ -1,0 +1,54 @@
+---
+- name: Logs
+  hosts: all
+  become: yes
+  become_method: sudo
+  vars:
+    server: 192.168.0.2:1239
+    log_server: 192.168.118.10:514
+
+  tasks:
+
+    - name: cache update
+      ansible.builtin.package:
+        update_cache: yes
+
+    - name: auditd install
+      ansible.builtin.package:
+        name: auditd
+        state: latest
+
+    - name: rsyslog install
+      ansible.builtin.package:
+        name: rsyslog
+        state: latest
+
+    - name: Add hosts events in server syslog
+      ansible.builtin.script: insys.sh "{{ log_server }}"
+      notify: reboot_rsys
+
+    - name: Add rules auditd
+      ansible.builtin.copy:
+        src: audit.rules
+        dest: /etc/audit/rules.d/audit.rules
+        owner: root
+        group: root
+        mode: '0644'
+      notify: reboot_rules
+
+    - name: restart services
+      meta: flush_handlers
+
+    - name: Check hosts
+      ansible.builtin.shell: curl "{{ server }}"/?hello=this_test; echo "# Testsilence" >> /etc/ssh/sshd_config; touch anyway_file.txt; chmod +r anyway_file.txt; rm anyway_file.txt
+
+  handlers:
+    - name: reboot_rsys
+      service:
+        name: rsyslog
+        state: restarted
+
+    - name: reboot_rules
+      service:
+        name: auditd
+        state: restarted

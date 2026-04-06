@@ -1,0 +1,47 @@
+
+PLAY [Logs] ********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [debian_host_1]
+ok: [debian_host_2]
+
+TASK [cache update] ************************************************************
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [auditd install] **********************************************************
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [rsyslog install] *********************************************************
+changed: [debian_host_2]
+changed: [debian_host_1]
+
+TASK [Add hosts events in server syslog] ***************************************
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [Add rules auditd] ********************************************************
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [restart services] ********************************************************
+
+TASK [restart services] ********************************************************
+
+RUNNING HANDLER [reboot_rsys] **************************************************
+changed: [debian_host_2]
+changed: [debian_host_1]
+
+RUNNING HANDLER [reboot_rules] *************************************************
+changed: [debian_host_1]
+changed: [debian_host_2]
+
+TASK [Check hosts] *************************************************************
+changed: [debian_host_2]
+changed: [debian_host_1]
+
+PLAY RECAP *********************************************************************
+debian_host_1              : ok=9    changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+debian_host_2              : ok=9    changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
