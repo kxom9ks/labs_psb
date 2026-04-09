@@ -1,0 +1,38 @@
+
+PLAY [PostgreSQL install and settings] *****************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Ubuntu_docker_DB]
+
+TASK [update cache] ************************************************************
+ok: [Ubuntu_docker_DB]
+
+TASK [install docker] **********************************************************
+changed: [Ubuntu_docker_DB]
+
+TASK [Pull pgsql docker image] *************************************************
+ok: [Ubuntu_docker_DB]
+
+TASK [postgres up] *************************************************************
+changed: [Ubuntu_docker_DB]
+
+TASK [Secure pg_hba.conf] ******************************************************
+changed: [Ubuntu_docker_DB]
+
+TASK [SSL MODE ON] *************************************************************
+changed: [Ubuntu_docker_DB]
+
+TASK [Reboot pgsql] ************************************************************
+
+RUNNING HANDLER [restart pgsql] ************************************************
+changed: [Ubuntu_docker_DB]
+
+TASK [create database secure_db] ***********************************************
+changed: [Ubuntu_docker_DB]
+
+TASK [create group readers.public] *********************************************
+changed: [Ubuntu_docker_DB]
+
+PLAY RECAP *********************************************************************
+Ubuntu_docker_DB           : ok=10   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

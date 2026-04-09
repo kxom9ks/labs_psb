@@ -1,0 +1,8 @@
+sed -i '0,/host all all all scram-sha-256/s//hostssl all all all scram-sha-256/' /var/lib/postgresql/18/docker/pg_hba.conf
+sed -i 's/^#\?ssl\s*=.*/ssl = on/g' /var/lib/postgresql/18/docker/postgresql.conf
+sed -i "s/^#\?ssl_cert_file\s*=.*/ssl_cert_file = 'server.crt'/g" /var/lib/postgresql/18/docker/postgresql.conf
+sed -i "s/^#\?ssl_key_file\s*=.*/ssl_key_file = 'server.key'/g" /var/lib/postgresql/18/docker/postgresql.conf
+openssl req -new -x509 -days 365 -nodes -text -out /var/lib/postgresql/18/docker/server.crt -keyout /var/lib/postgresql/18/docker/server.key -subj "/CN=Fortest"
+
+
+

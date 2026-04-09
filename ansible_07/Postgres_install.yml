@@ -1,0 +1,81 @@
+---
+- name: PostgreSQL install and settings
+  hosts: DATABASE_SERVERS
+  become: yes
+  vars:
+    host: "192.168.0.5"
+    dport: "1234"
+    user: "postgres"
+    password: "fortest"
+
+  tasks:
+    - name: update cache
+      ansible.builtin.package:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: install docker
+      ansible.builtin.package:
+        name:
+          - docker.io
+          - python3-psycopg2
+        state: present
+        update_cache: yes
+
+    - name: Pull pgsql docker image
+      community.docker.docker_image:
+        name: postgres
+        source: pull
+
+    - name: postgres up
+      community.docker.docker_container:
+        name: pgsql
+        image: postgres:latest
+        state: started
+        env:
+          POSTGRES_PASSWORD: "{{ password }}"
+          PGPORT: "5452"
+        ports: "1234:5452"
+
+    - name: Secure pg_hba.conf
+      ansible.builtin.shell: docker exec -i pgsql /bin/bash -c "cat > /var/lib/postgresql/18/docker/pg_hba.conf"
+      args:
+        stdin: "{{ lookup('file', 'pg_hba.conf') }}"
+      notify: restart pgsql
+
+    - name: SSL MODE ON
+      ansible.builtin.shell: docker exec -i pgsql /bin/bash
+      args:
+        stdin: "{{ lookup('file', 'cmd_ssl') }}"
+      notify: restart pgsql
+
+    - name: Reboot pgsql
+      meta: flush_handlers
+
+    - name: create database secure_db
+      community.postgresql.postgresql_db:
+        name: secure_db
+        state: present
+        login_host: "{{ host }}"
+        login_port: "{{ dport }}"
+        login_user: "{{ user }}"
+        login_password: "{{ password }}"
+
+    - name: create group readers.public
+      community.postgresql.postgresql_query:
+        login_host: "{{ host }}"
+        login_port: "{{ dport }}"
+        login_user: "{{ user }}"
+        login_password: "{{ password }}"
+        db: secure_db
+        query: "{{ lookup('file', 'role_sc.sql') }}"
+      failed_when: false
+
+  handlers:
+    - name: restart pgsql
+      community.docker.docker_container:
+        name: pgsql
+        image: postgres:latest
+        state: started
+        restart: true
+
